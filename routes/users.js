@@ -2,6 +2,7 @@ const express = require("express");
 const Users = require("./../models/Users");
 const router = express.Router();
 
+// Get all users
 router.get("/", async (req, res) => {
   try {
     const users = await Users.find();
@@ -11,6 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Create new user
 router.post("/", async (req, res) => {
   console.log(req.body);
 
@@ -27,6 +29,16 @@ router.post("/", async (req, res) => {
     .catch((err) => {
       res.json({ message: err });
     });
+});
+
+// get specific user
+router.get("/:postId", async (req, res) => {
+  try {
+    const singleUser = await Users.findById(req.params.postId);
+    res.json(users);
+  } catch {
+    res.json({ message: err });
+  }
 });
 
 module.exports = router;
