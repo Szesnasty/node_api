@@ -32,11 +32,21 @@ router.post("/", async (req, res) => {
 });
 
 // get specific user
-router.get("/:postId", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
-    const singleUser = await Users.findById(req.params.postId);
+    const singleUser = await Users.findById(req.params.userId);
     res.json(users);
-  } catch {
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+// delete user
+router.delete("/:userId", async (req, res) => {
+  try {
+    const singleUser = await Users.deleteOne({ _id: req.params.userId });
+    res.json(users);
+  } catch (err) {
     res.json({ message: err });
   }
 });
