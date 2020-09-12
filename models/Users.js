@@ -5,7 +5,10 @@ const UsersSchema = mongoose.Schema({
     type: String,
     require: true,
   },
-  email: String,
+  email: {
+    type: String,
+    require: true,
+  },
 });
 
-module.exports = mongoose.model('Users', UsersSchema);
+module.exports = mongoose.model("Users", UsersSchema);
