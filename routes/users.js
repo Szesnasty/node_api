@@ -2,11 +2,16 @@ const express = require("express");
 const Users = require("./../models/Users");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Its work!");
+router.get("/", async (req, res) => {
+  try {
+    const users = await Users.find();
+    res.json(users);
+  } catch {
+    res.json({ message: err });
+  }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body);
 
   const users = new Users({
