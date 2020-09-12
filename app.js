@@ -4,10 +4,10 @@ require("dotenv/config");
 
 const app = express();
 
-// ROUTES
-app.get("/", (req, res) => {
-  res.send("Its work!");
-});
+// IMPORT ROUTERS
+const UserRoutes = require("./routes/users");
+
+app.use("/users", UserRoutes);
 
 // CONNECT
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
