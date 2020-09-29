@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 require("dotenv/config");
 
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 const UserRoutes = require("./routes/users");
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use("/users", UserRoutes);
 
 // CONNECT
@@ -21,4 +23,4 @@ mongoose.connect(
   () => console.log("connect!!")
 );
 
-app.listen(3000);
+app.listen(8000);
