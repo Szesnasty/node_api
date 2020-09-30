@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
 router.get("/:userId", async (req, res) => {
   try {
     const singleUser = await Users.findById(req.params.userId);
-    res.json(users);
+    res.json(singleUser);
   } catch (err) {
     res.json({ message: err });
   }

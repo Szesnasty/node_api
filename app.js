@@ -8,10 +8,12 @@ const app = express();
 
 // IMPORT ROUTERS
 const UserRoutes = require("./routes/users");
+const AuthRoutes = require("./routes/auth");
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/users", UserRoutes);
+app.use("/login", AuthRoutes);
 
 // CONNECT
 mongoose.connect(
