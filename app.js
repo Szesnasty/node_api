@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv/config");
+const verifyToken = require("./routes/verify-token");
 
 const app = express();
 
@@ -12,7 +13,7 @@ const AuthRoutes = require("./routes/auth");
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/users", UserRoutes);
+app.use("/users", verifyToken, UserRoutes);
 app.use("/login", AuthRoutes);
 
 // CONNECT
